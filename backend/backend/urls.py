@@ -23,4 +23,4 @@ urlpatterns = [
     path('api/', include('publisher.urls')),
     path('api/', include('submission.urls')),
 ]
-# Serve static files in development
+# Serve static files in development 
