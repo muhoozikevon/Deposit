@@ -1,6 +1,8 @@
-from .views import SubmissionRegister
 from django.urls import path
+from .views import SubmissionCreate, SubmissionList
 
 urlpatterns = [
-    path('submission/register/', SubmissionRegister.as_view(), name='submission-register'),
+    path('submissions/', SubmissionCreate.as_view()),
+    path('submissions/all/', SubmissionList.as_view()),
 ]
+# The above code defines URL patterns for the submission app in a Django project.

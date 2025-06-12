@@ -5,6 +5,13 @@ from rest_framework import generics
 from .models import Submission
 from .serializers import SubmissionSerializer
 
-class PublisherRegister(generics.CreateAPIView):
+class SubmissionCreate(generics.CreateAPIView):
+    queryset = Submission.objects.all()
+    serializer_class = SubmissionSerializer
+
+class SubmissionList(generics.ListAPIView):
+    queryset = Submission.objects.all()
+    serializer_class = SubmissionSerializer
+class SubmissionDetail(generics.RetrieveAPIView):
     queryset = Submission.objects.all()
     serializer_class = SubmissionSerializer
