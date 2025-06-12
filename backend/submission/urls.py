@@ -1,5 +1,6 @@
 from .views import SubmissionRegister
+from django.urls import path
 
 urlpatterns = [
-    path('Submission/register/', SubmissionRegister.as_view()),
+    path('submission/register/', SubmissionRegister.as_view(), name='submission-register'),
 ]
