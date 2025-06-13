@@ -1,7 +1,24 @@
+
+import LoginForm from '../components/LoginForm';
 import PublisherForm from '../components/PublisherForm';
 import SubmissionForm from '../components/SubmissionForm';
 import SubmissionsTable from '../components/SubmissionsTable';
 
+export default function Home() {
+  return (
+    <main className="p-8 bg-gray-100 min-h-screen space-y-8">
+      <h1 className="text-3xl font-bold text-center text-blue-900">Legal Deposit System</h1>
+      <div className="flex flex-col md:flex-row gap-8 justify-center">
+        <LoginForm />
+        <PublisherForm />
+        <SubmissionForm />
+      </div>
+      <SubmissionsTable />
+    </main>
+  );
+}
+// This is the main page of the application.
+// It imports the PublisherForm, SubmissionForm, and SubmissionsTable components.
 // Inside the JSX
 <SubmissionsTable />
 
