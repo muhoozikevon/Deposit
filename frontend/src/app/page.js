@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import LoginForm from '../components/LoginForm';
 import LogoutButton from '../components/LogoutButton';
 import SubmissionForm from '../components/SubmissionForm';
@@ -7,49 +10,51 @@ import SubmissionsTable from '../components/SubmissionsTable';
 import UserBadge from '../components/UserBadge';
 import { useAuth } from '../context/AuthContext';
 
-export default function LogoutButton() {
-  const { logout, token } = useAuth();
-
-  if (!token) return null;
-
-  return (
-    <button onClick={logout} className="bg-red-500 text-white px-4 py-2 rounded">
-      Logout
-    </button>
-  );
-}
-
 export default function Home() {
+  const [darkMode, setDarkMode] = useState(false);
+  const { token } = useAuth();
+
   return (
-    <main className="p-8 bg-gray-100 min-h-screen space-y-8">
-      <h1 className="text-3xl font-bold text-center text-blue-900">Legal Deposit System</h1>
-      <div className="flex flex-col md:flex-row gap-8 justify-center">
-        <LoginForm />
-        <PublisherForm />
-        <SubmissionForm />
+    <main className={`${darkMode ? 'dark' : ''}`}>
+      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-black dark:text-white p-6 space-y-8">
+
+        {/* Header */}
+        <header className="flex justify-between items-center">
+          <h1 className="text-3xl font-bold text-blue-900 dark:text-blue-300">Legal Deposit System</h1>
+
+          {/* Dark Mode Toggle */}
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className="bg-gray-300 dark:bg-gray-700 text-black dark:text-white px-4 py-2 rounded"
+          >
+            Toggle {darkMode ? 'Light' : 'Dark'} Mode
+          </button>
+        </header>
+
+        {/* Auth Info */}
+        <div className="flex justify-between items-center">
+          <UserBadge />
+          <LogoutButton />
+        </div>
+
+        {/* Forms */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <LoginForm />
+          <PublisherForm />
+        </div>
+
+        {/* Password Reset + Submission */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <PasswordResetForm />
+          <SubmissionForm />
+        </div>
+
+        {/* Submissions Table */}
+        <SubmissionsTable />
       </div>
-      <SubmissionsTable />
     </main>
   );
 }
 // This is the main page of the application.
-// It imports the PublisherForm, SubmissionForm, and SubmissionsTable components.
-// Inside the JSX
-<SubmissionsTable />
-
-export default function Home() {
-  return (
-    <main className="min-h-screen bg-gray-100 p-10 flex flex-col md:flex-row items-start justify-center gap-10">
-      <PublisherForm />
-      <SubmissionForm />
-    </main>
-  );
-}
-// This is the main page of the application.
-// It imports the PublisherForm and SubmissionForm components and renders them side by side.
-// The layout is responsive, adjusting to different screen sizes using Tailwind CSS classes.
-// The main container has a light gray background and padding for better spacing.
-// The PublisherForm component allows publishers to register by filling out a form.
-// The SubmissionForm component allows publishers to upload submissions with various details and a file.
-// Both forms are styled using Tailwind CSS for a clean and modern look.
-// The main page serves as the entry point for publishers to interact with the application.
+// It includes the header, dark mode toggle, user badge, logout button, forms for login, publisher registration, password reset, and submission,
+// and a table to display submissions.
