@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import decodeToken from '../utils/decodeToken';
+
 
 export default function SubmissionsTable() {
   const { token } = useAuth();
