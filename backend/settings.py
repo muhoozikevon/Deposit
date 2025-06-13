@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'corsheaders',
     'publisher',
     'submission',
+    'rest_framework.authtoken', 
+    'django_rest_passwordreset',
+    'rest_framework.authtoken',
 ]
 
 MEDIA_URL = '/media/'
@@ -132,3 +135,11 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = 'publisher.PublisherUser'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'kevonmuhoozi@outlook.com'
+EMAIL_HOST_PASSWORD = 'Icui4cu@von'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
