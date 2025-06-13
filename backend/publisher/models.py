@@ -7,6 +7,7 @@ class Publisher(models.Model):
     email = models.EmailField(unique=True)
     organization = models.CharField(max_length=255)
     is_verified = models.BooleanField(default=False)
+    is_google_account = models.BooleanField(default=False) 
 
 class PublisherUser(AbstractUser):
     organization = models.CharField(max_length=255)
