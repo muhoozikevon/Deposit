@@ -2,6 +2,7 @@ localStorage.setItem('authToken', res.data.access);
 import { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import decodeToken from '../utils/decodeToken';
 
 export default function LoginForm() {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -39,3 +40,14 @@ export default function LoginForm() {
   );
 }
 // This component is a simple login form that allows users to log in using their email and password.
+export default function UserBadge() {
+  const { token } = useAuth();
+  if (!token) return null;
+
+  const decoded = decodeToken(token);
+  return (
+    <div className="text-sm text-gray-700 bg-white p-2 rounded shadow">
+      Logged in as: <strong>{decoded?.username || decoded?.email}</strong>
+    </div>
+  );
+}
