@@ -1,0 +1,13 @@
+Django>=4.2
+djangorestframework>=3.14
+Django>=4.2
+djangorestframework>=3.14
+gunicorn
+django-cors-headers
+whitenoise
+psycopg2-binary
+# For local development
+django-debug-toolbar
+# For testing
+pytest
+pytest-django
