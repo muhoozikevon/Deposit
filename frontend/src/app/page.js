@@ -9,14 +9,20 @@ import PasswordResetForm from '../components/PasswordResetForm';
 import SubmissionsTable from '../components/SubmissionsTable';
 import UserBadge from '../components/UserBadge';
 import { useAuth } from '../context/AuthContext';
-
+import NavBar from '../components/NavBar';
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
-  const { token } = useAuth();
 
   return (
-    <main className={`${darkMode ? 'dark' : ''}`}>
-      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-black dark:text-white p-6 space-y-8">
+    <main className={darkMode ? 'dark' : ''}>
+      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
+
+        <NavBar
+          darkMode={darkMode}
+          onToggleDarkMode={() => setDarkMode(!darkMode)}
+        />
+
+  const { token } = useAuth();
 
         {/* Header */}
         <header className="flex justify-between items-center">
