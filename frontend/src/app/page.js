@@ -22,8 +22,6 @@ export default function Home() {
           onToggleDarkMode={() => setDarkMode(!darkMode)}
         />
 
-  const { token } = useAuth();
-
         {/* Header */}
         <header className="flex justify-between items-center">
           <h1 className="text-3xl font-bold text-blue-900 dark:text-blue-300">Legal Deposit System</h1>
