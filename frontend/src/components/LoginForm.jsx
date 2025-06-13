@@ -1,35 +1,38 @@
 'use client';
-
 import { useState } from 'react';
 import axios from 'axios';
 
 export default function LoginForm() {
   const [form, setForm] = useState({ email: '', password: '' });
+  const [message, setMessage] = useState('');
   const [token, setToken] = useState('');
 
   const handleChange = (e) => {
-    setForm({...form, [e.target.name]: e.target.value});
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://127.0.0.1:8000/api/token/', form);
+      const res = await axios.post('http://127.0.0.1:8000/api/token/', {
+        username: form.email,  // assumes email is also username
+        password: form.password
+      });
       setToken(res.data.access);
+      setMessage('✅ Logged in!');
+      localStorage.setItem('authToken', res.data.access);
     } catch {
-      alert('Login failed.');
+      setMessage('❌ Login failed. Check credentials.');
     }
   };
 
   return (
-    <div className="max-w-md p-4 bg-white rounded shadow">
-      <h2 className="text-lg font-bold mb-2">Publisher Login</h2>
-      <form onSubmit={handleLogin} className="space-y-3">
-        <input name="email" onChange={handleChange} className="w-full border p-2" placeholder="Email" />
-        <input name="password" type="password" onChange={handleChange} className="w-full border p-2" placeholder="Password" />
-        <button className="bg-blue-600 text-white px-4 py-2 rounded" type="submit">Login</button>
-      </form>
-      {token && <p className="text-green-600 text-sm mt-2">Token: {token.slice(0, 20)}...</p>}
-    </div>
+    <form onSubmit={handleSubmit} className="max-w-md p-4 bg-white rounded shadow space-y-3">
+      <h2 className="text-xl font-bold">Login</h2>
+      <input name="email" placeholder="Email" value={form.email} onChange={handleChange} className="w-full p-2 border rounded" required />
+      <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} className="w-full p-2 border rounded" required />
+      <button className="bg-blue-600 text-white py-2 px-4 rounded" type="submit">Login</button>
+      {message && <p className="text-sm mt-2">{message}</p>}
+    </form>
   );
 }
