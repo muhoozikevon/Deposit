@@ -6,6 +6,19 @@ import {
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#845EC2'];
 
+const pieData = [
+  { name: 'Publishers', value: 40 },
+  { name: 'Submissions', value: 60 },
+  { name: 'Cataloged', value: 25 },
+  { name: 'Preserved', value: 15 },
+];
+
+const barData = [
+  { name: 'January', submissions: 30, validations: 10 },
+  { name: 'February', submissions: 50, validations: 25 },
+  { name: 'March', submissions: 70, validations: 50 },
+];
+
 export default function Dashboard() {
   return (
     <div className="mt-6 space-y-10">
