@@ -36,4 +36,3 @@ export default function CustomPieChart() {
 }
 // This component renders a responsive pie chart using Recharts.
 // It includes tooltips and legends for better data visualization.
-// The chart displays four groups with different colors and values.
