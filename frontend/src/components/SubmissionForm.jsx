@@ -1,7 +1,10 @@
 'use client';
-
+import { useAuth } from '../context/AuthContext';
 import { useState } from 'react';
 import axios from 'axios';
+
+// This component allows publishers to upload submissions.
+// It includes fields for publisher ID, title, ISBN, authors, publication date, format, and file upload.
 
 export default function SubmissionForm() {
   const [form, setForm] = useState({
@@ -40,7 +43,13 @@ export default function SubmissionForm() {
       setMessage('❌ Upload failed. Check fields.');
     }
   };
-
+  const { token } = useAuth();
+  if (!token) {
+    return <p className="text-red-600">❌ You must be logged in to upload submissions.</p>;
+  }
+  if (token && !token.startsWith('Publisher')) {
+    return <p className="text-red-600">❌ Only publishers can upload submissions.</p>;
+  }
   return (
     <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md space-y-4 max-w-md">
       <h2 className="text-2xl font-bold text-green-800">Upload Submission</h2>
