@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 import { useAuth } from '../context/AuthContext';
 import UserBadge from './UserBadge';
 import LogoutButton from './LogoutButton';
@@ -47,17 +48,18 @@ export default function NavBar({ onToggleDarkMode, darkMode }) {
           )}
 
           {/* Navigation Links */}
-          <nav className="mt-4 px-4 space-y-2">
-            {modules.map((mod, index) => (
-              <a
-                key={index}
-                href={`#${mod.replace(/\s+/g, '-').toLowerCase()}`}
-                className="text-sm text-gray-800 dark:text-gray-300 hover:underline block"
-              >
-                {open ? mod : mod[0]}
-              </a>
-            ))}
-          </nav>
+        {modules.map((mod, index) => {
+  const path = '/' + mod.toLowerCase().replace(/\s+/g, '-');
+
+  return (
+    <Link key={index} href={path}>
+      <span className="text-sm text-gray-800 dark:text-gray-300 hover:underline block">
+        {open ? mod : mod[0]}
+      </span>
+    </Link>
+  );
+})}
+
         </div>
 
         {/* Footer */}
