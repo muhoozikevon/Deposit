@@ -14,7 +14,25 @@ export default function Dashboard() {
       {/* Pie Chart */}
       <div className="bg-white dark:bg-gray-800 rounded p-4 shadow">
         <h3 className="text-lg font-semibold mb-2 text-gray-700 dark:text-gray-200">Resource Distribution</h3>
-        
+        <ResponsiveContainer width="100%" height={250}>
+          <PieChart>
+            <Pie
+              data={pieData}
+              cx="50%"
+              cy="50%"
+              outerRadius={90}
+              fill="#8884d8"
+              dataKey="value"
+              isAnimationActive={true}
+              label
+            >
+              {pieData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip />
+          </PieChart>
+        </ResponsiveContainer>
       </div>
 
       {/* Bar Chart */}
