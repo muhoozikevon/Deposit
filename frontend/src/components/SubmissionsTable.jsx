@@ -1,19 +1,26 @@
-'use client';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
+import decodeToken from '../utils/decodeToken';
 
 export default function SubmissionsTable() {
+  const { token } = useAuth();
   const [data, setData] = useState([]);
+  const isAdmin = token && decodeToken(token)?.is_admin;
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/submissions/all/')
-      .then(res => setData(res.data))
-      .catch(() => setData([]));
-  }, []);
+    if (isAdmin) {
+      axios.get('http://127.0.0.1:8000/api/submissions/all/')
+        .then(res => setData(res.data))
+        .catch(() => setData([]));
+    }
+  }, [isAdmin]);
+
+  if (!isAdmin) {
+    return <p className="text-center text-red-500">🔒 Admins only.</p>;
+  }
 
   return (
     <div className="overflow-x-auto mt-10 bg-white shadow p-4 rounded">
-      <h2 className="text-xl font-bold mb-2">Submissions</h2>
+      <h2 className="text-xl font-bold mb-2">All Submissions (Admin View)</h2>
       <table className="w-full table-auto text-sm">
         <thead>
           <tr className="bg-gray-100">

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 # Create your views here.
 from rest_framework import generics
@@ -46,3 +47,8 @@ class PublisherRegister(APIView):
 
         return Response({'detail': 'Registration successful. Temporary password sent via email.'}, status=201)
 
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import CustomTokenObtainPairSerializer
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
