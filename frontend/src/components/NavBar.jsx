@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import UserBadge from './UserBadge';
 import LogoutButton from './LogoutButton';
+import Dashboard from './Dashboard'; // at the top of file
 
 const modules = [
   'Dashboard', // ← Add this first
@@ -74,8 +75,12 @@ export default function NavBar({ onToggleDarkMode, darkMode }) {
 
       {/* Page content placeholder */}
       <main className="flex-1 p-6 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
-        <h1 className="text-2xl font-bold">Welcome to Legal Deposit</h1>
-        <p className="text-sm mt-2">Select a module from the sidebar.</p>
+  <h1 className="text-2xl font-bold">Welcome to Legal Deposit</h1>
+  <p className="text-sm mt-2">Select a module from the sidebar.</p>
+              {/* Dashboard First */}
+  <section id="dashboard" className="mt-10">
+    <Dashboard />
+  </section>
 
         {modules.map(mod => (
   <section key={mod} id={mod.replace(/\s+/g, '-').toLowerCase()} className="mt-10">
@@ -83,6 +88,13 @@ export default function NavBar({ onToggleDarkMode, darkMode }) {
     <p className="text-sm text-gray-600 dark:text-gray-400">Placeholder for {mod}</p>
   </section>
 ))}
+{/* Placeholders for other modules */}
+  {modules.slice(1).map(mod => (
+    <section key={mod} id={mod.replace(/\s+/g, '-').toLowerCase()} className="mt-10">
+      <h2 className="text-lg font-semibold">{mod}</h2>
+      <p className="text-sm text-gray-600 dark:text-gray-400">Placeholder for {mod}</p>
+    </section>
+  ))}
       </main>
     </div>
   );
