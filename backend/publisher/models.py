@@ -8,7 +8,7 @@ class Publisher(models.Model):
     organization = models.CharField(max_length=255)
     is_verified = models.BooleanField(default=False)
 
-class Publisher(AbstractUser):
+class PublisherUser(AbstractUser):
     organization = models.CharField(max_length=255)
     is_verified = models.BooleanField(default=False)
 

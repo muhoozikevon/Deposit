@@ -93,7 +93,7 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
-AUTH_USER_MODEL = 'publisher.Publisher'
+AUTH_USER_MODEL = 'publisher.PublisherUser'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
