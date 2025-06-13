@@ -5,6 +5,7 @@ import UserBadge from './UserBadge';
 import LogoutButton from './LogoutButton';
 
 const modules = [
+  'Dashboard', // ← Add this first
   'Publisher Management',
   'Submission',
   'Validation',
@@ -77,11 +78,11 @@ export default function NavBar({ onToggleDarkMode, darkMode }) {
         <p className="text-sm mt-2">Select a module from the sidebar.</p>
 
         {modules.map(mod => (
-          <section key={mod} id={mod.replace(/\s+/g, '-').toLowerCase()} className="mt-10">
-            <h2 className="text-lg font-semibold">{mod}</h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Placeholder for {mod}</p>
-          </section>
-        ))}
+  <section key={mod} id={mod.replace(/\s+/g, '-').toLowerCase()} className="mt-10">
+    <h2 className="text-lg font-semibold">{mod}</h2>
+    <p className="text-sm text-gray-600 dark:text-gray-400">Placeholder for {mod}</p>
+  </section>
+))}
       </main>
     </div>
   );
