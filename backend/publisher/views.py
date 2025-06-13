@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.core.mail import send_mail
-from .models import Publisher  # your custom user model
+from .models import PublisherUser  # your custom user model
 
 class PublisherRegister(APIView):
     def post(self, request):
@@ -21,14 +21,14 @@ class PublisherRegister(APIView):
         if not email or not username or not organization:
             return Response({'detail': 'Missing required fields'}, status=400)
 
-        if Publisher.objects.filter(email=email).exists():
+        if PublisherUser.objects.filter(email=email).exists():
             return Response({'detail': 'Email already registered'}, status=400)
 
         # Generate temporary password
         password = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
 
         # Create user
-        user = Publisher.objects.create_user(
+        user = PublisherUser.objects.create_user(
             username=username,
             email=email,
             password=password,
