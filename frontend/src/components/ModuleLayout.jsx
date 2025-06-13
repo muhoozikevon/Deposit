@@ -1,5 +1,6 @@
-// ✅ File: src/components/ModuleLayout.jsx
 'use client';
+
+// ✅ File: src/components/ModuleLayout.jsx
 import { useState } from 'react';
 import NavBar from './NavBar';
 
@@ -15,6 +16,5 @@ export default function ModuleLayout({ children }) {
     </main>
   );
 }
-// This component serves as a layout for modules, providing a navigation bar and dark mode toggle functionality.
-// It uses React's useState hook to manage the dark mode state.
-// The NavBar component is passed the current dark mode state and a function to toggle it.
+//   </aside>
+//         {/* Main Content */}

@@ -1,23 +1,4 @@
-// ✅ File: src/components/ModuleLayout.jsx
-'use client';
-import { useState } from 'react';
-import NavBar from './NavBar';
-
-export default function ModuleLayout({ children }) {
-  const [darkMode, setDarkMode] = useState(false);
-
-  return (
-    <main className={darkMode ? 'dark' : ''}>
-      <NavBar darkMode={darkMode} onToggleDarkMode={() => setDarkMode(!darkMode)} />
-      <div className="flex-1 p-6 bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
-        {children}
-      </div>
-    </main>
-  );
-}
-
 // ✅ File: src/components/NavBar.jsx
-'use client';
 import { useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '../context/AuthContext';
@@ -103,6 +84,18 @@ export default function NavBar({ onToggleDarkMode, darkMode }) {
     </div>
   );
 }
-// This NavBar component provides a sidebar navigation for the application.
-// It includes links to various modules, a toggle for dark mode, and user-related actions.
-// The sidebar can be expanded or collapsed, and it uses icons to represent each module.
+// This component serves as the navigation bar for the application.
+// It includes a sidebar with links to various modules, a toggle for dark mode, and user-related actions.
+// The sidebar can be expanded or collapsed, and it displays module names with icons.
+// The `NavBar` component is designed to be responsive and user-friendly, providing quick access to different sections of the application.
+// The `darkMode` state is used to toggle between light and dark themes, enhancing user experience.
+// The `UserBadge` and `LogoutButton` components are included for user management functionalities.
+// The `Dashboard` component is rendered in the main content area, providing an overview of the application.
+// The sidebar is styled with a backdrop blur effect and responsive design, ensuring it looks good in both light and dark modes.
+// The navigation links are dynamically generated from the `modules` array, making it easy to add or remove modules in the future.
+// The sidebar's width adjusts based on whether it is open or closed, providing a clean and minimal interface when collapsed.
+// The `Link` component from Next.js is used for client-side navigation, ensuring smooth transitions between pages.
+// The `useAuth` hook is used to access authentication-related data, such as the user's token.
+// The `onToggleDarkMode` function is passed as a prop to allow toggling the dark mode state from the parent component.
+// The `darkMode` prop is used to apply the appropriate styles for dark mode, enhancing accessibility and user comfort.
+// The sidebar's background is semi-transparent, providing a modern look while maintaining readability.
