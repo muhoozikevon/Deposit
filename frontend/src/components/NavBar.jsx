@@ -1,24 +1,43 @@
+// ✅ File: src/components/ModuleLayout.jsx
+'use client';
+import { useState } from 'react';
+import NavBar from './NavBar';
+
+export default function ModuleLayout({ children }) {
+  const [darkMode, setDarkMode] = useState(false);
+
+  return (
+    <main className={darkMode ? 'dark' : ''}>
+      <NavBar darkMode={darkMode} onToggleDarkMode={() => setDarkMode(!darkMode)} />
+      <div className="flex-1 p-6 bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
+        {children}
+      </div>
+    </main>
+  );
+}
+
+// ✅ File: src/components/NavBar.jsx
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '../context/AuthContext';
 import UserBadge from './UserBadge';
 import LogoutButton from './LogoutButton';
-import Dashboard from './Dashboard'; // at the top of file
+import Dashboard from './Dashboard';
 
 const modules = [
-  'Dashboard', // ← Add this first
-  'Publisher Management',
-  'Submission',
-  'Validation',
-  'Cataloging',
-  'Storage & Preservation',
-  'Access & Discovery',
-  'Compliance & Enforcement',
-  'Reporting & Analytics',
-  'Digitization',
-  'Interlibrary Loan',
-  'Disaster Recovery',
+  { name: 'Dashboard', icon: '📊' },
+  { name: 'Publisher Management', icon: '🏢' },
+  { name: 'Submission', icon: '📥' },
+  { name: 'Validation', icon: '✅' },
+  { name: 'Cataloging', icon: '📚' },
+  { name: 'Storage & Preservation', icon: '🗄️' },
+  { name: 'Access & Discovery', icon: '🔎' },
+  { name: 'Compliance & Enforcement', icon: '⚖️' },
+  { name: 'Reporting & Analytics', icon: '📈' },
+  { name: 'Digitization', icon: '🖨️' },
+  { name: 'Interlibrary Loan', icon: '🔁' },
+  { name: 'Disaster Recovery', icon: '🧯' },
 ];
 
 export default function NavBar({ onToggleDarkMode, darkMode }) {
@@ -48,18 +67,18 @@ export default function NavBar({ onToggleDarkMode, darkMode }) {
           )}
 
           {/* Navigation Links */}
-        {modules.map((mod, index) => {
-  const path = '/' + mod.toLowerCase().replace(/\s+/g, '-');
-
-  return (
-    <Link key={index} href={path}>
-      <span className="text-sm text-gray-800 dark:text-gray-300 hover:underline block">
-        {open ? mod : mod[0]}
-      </span>
-    </Link>
-  );
-})}
-
+          <nav className="mt-4 px-4 space-y-2">
+            {modules.map(({ name, icon }, index) => {
+              const path = '/' + name.toLowerCase().replace(/\s+/g, '-');
+              return (
+                <Link key={index} href={path}>
+                  <span className="text-sm text-gray-800 dark:text-gray-300 hover:underline block">
+                    {open ? `${icon} ${name}` : icon}
+                  </span>
+                </Link>
+              );
+            })}
+          </nav>
         </div>
 
         {/* Footer */}
@@ -77,27 +96,13 @@ export default function NavBar({ onToggleDarkMode, darkMode }) {
 
       {/* Page content placeholder */}
       <main className="flex-1 p-6 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
-  <h1 className="text-2xl font-bold">Welcome to Legal Deposit</h1>
-  <p className="text-sm mt-2">Select a module from the sidebar.</p>
-              {/* Dashboard First */}
-  <section id="dashboard" className="mt-10">
-    <Dashboard />
-  </section>
-
-        {modules.map(mod => (
-  <section key={mod} id={mod.replace(/\s+/g, '-').toLowerCase()} className="mt-10">
-    <h2 className="text-lg font-semibold">{mod}</h2>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Placeholder for {mod}</p>
-  </section>
-))}
-{/* Placeholders for other modules */}
-  {modules.slice(1).map(mod => (
-    <section key={mod} id={mod.replace(/\s+/g, '-').toLowerCase()} className="mt-10">
-      <h2 className="text-lg font-semibold">{mod}</h2>
-      <p className="text-sm text-gray-600 dark:text-gray-400">Placeholder for {mod}</p>
-    </section>
-  ))}
+        <section id="dashboard" className="mt-10">
+          <Dashboard />
+        </section>
       </main>
     </div>
   );
 }
+// This NavBar component provides a sidebar navigation for the application.
+// It includes links to various modules, a toggle for dark mode, and user-related actions.
+// The sidebar can be expanded or collapsed, and it uses icons to represent each module.
