@@ -1,5 +1,9 @@
 import PublisherForm from '../components/PublisherForm';
 import SubmissionForm from '../components/SubmissionForm';
+import SubmissionsTable from '../components/SubmissionsTable';
+
+// Inside the JSX
+<SubmissionsTable />
 
 export default function Home() {
   return (
