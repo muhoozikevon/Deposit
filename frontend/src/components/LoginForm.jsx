@@ -1,3 +1,5 @@
+localStorage.setItem('authToken', res.data.access);
+
 'use client';
 import { useState } from 'react';
 import axios from 'axios';
