@@ -1,8 +1,10 @@
-
 import LoginForm from '../components/LoginForm';
-import PublisherForm from '../components/PublisherForm';
+import LogoutButton from '../components/LogoutButton';
 import SubmissionForm from '../components/SubmissionForm';
+import PublisherForm from '../components/PublisherForm';
+import PasswordResetForm from '../components/PasswordResetForm';
 import SubmissionsTable from '../components/SubmissionsTable';
+import UserBadge from '../components/UserBadge';
 import { useAuth } from '../context/AuthContext';
 
 export default function LogoutButton() {
