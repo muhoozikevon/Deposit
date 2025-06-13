@@ -1,41 +1,37 @@
 'use client';
-'use client';
+import {
+  PieChart, Pie, Cell,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
+} from 'recharts';
 
-import React from 'react';
-import ChartsRow from './ChartsRow';
-import ModuleLayout from './ModuleLayout';
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#845EC2'];
 
 export default function Dashboard() {
-  const stats = [
-    { name: 'Publishers', value: 120 },
-    { name: 'Submissions', value: 350 },
-    { name: 'Validations', value: 275 },
-    { name: 'Cataloged Items', value: 210 },
-    { name: 'Preserved Copies', value: 190 },
-  ];
-
   return (
-    <ModuleLayout>
-      {/* Charts at the top */}
-      <ChartsRow />
+    <div className="mt-6 space-y-10">
+      <h2 className="text-2xl font-bold text-gray-800 dark:text-white">📊 Dashboard Overview</h2>
 
-      {/* Stats overview cards below the charts */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
-        {stats.map((item, index) => (
-          <div
-            key={index}
-            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow text-center"
-          >
-            <h3 className="text-lg font-medium text-gray-600 dark:text-gray-300">
-              {item.name}
-            </h3>
-            <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mt-2">
-              {item.value}
-            </p>
-          </div>
-        ))}
+      {/* Pie Chart */}
+      <div className="bg-white dark:bg-gray-800 rounded p-4 shadow">
+        <h3 className="text-lg font-semibold mb-2 text-gray-700 dark:text-gray-200">Resource Distribution</h3>
+        
       </div>
-    </ModuleLayout>
+
+      {/* Bar Chart */}
+      <div className="bg-white dark:bg-gray-800 rounded p-4 shadow">
+        <h3 className="text-lg font-semibold mb-2 text-gray-700 dark:text-gray-200">Monthly Trends</h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={barData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="submissions" fill="#8884d8" />
+            <Bar dataKey="validations" fill="#82ca9d" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
   );
 }
-// This component renders the main dashboard layout with charts and stats overview.
