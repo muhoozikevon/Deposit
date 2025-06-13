@@ -17,7 +17,6 @@ export default function LogoutButton() {
   );
 }
 
-
 export default function Home() {
   return (
     <main className="p-8 bg-gray-100 min-h-screen space-y-8">
